@@ -1,24 +1,22 @@
 // JavaScript for interactive features of the portfolio website
 
-// Toggle the mobile menu
+// Smooth scroll for in-page navigation links
 document.addEventListener('DOMContentLoaded', () => {
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navLinks = document.querySelectorAll('#mobile-menu a');
+    const pageLinks = document.querySelectorAll('a[href^="#"]');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    // Close the mobile menu when a link is clicked
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
+    pageLinks.forEach(link => {
+        link.addEventListener('click', event => {
+            const targetId = link.getAttribute('href')?.substring(1);
+            const targetEl = targetId ? document.getElementById(targetId) : null;
+            if (targetEl) {
+                event.preventDefault();
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     });
 });
 
-// Function to show a specific project page
+// Function to show a specific project page (used on projects page)
 function showProject(projectId) {
     // Hide the main portfolio content
     document.getElementById('main-content').classList.add('hidden');

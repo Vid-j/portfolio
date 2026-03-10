@@ -6,29 +6,241 @@
     <title>My Portfolio</title>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
+<body class="page">
 
     <!-- Navigation Bar -->
     <header>
-        <nav>
-            <a href="index.html">My Portfolio</a>
-            <a href="about.html">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="contact.html">Contact</a>
-        </nav>
+        <div class="shell nav">
+            <div class="nav-left">
+                <div class="nav-mark">VJ</div>
+                <div class="nav-title">
+                    <span>PORTFOLIO</span>
+                    <span>Vidhi Joshi</span>
+                </div>
+            </div>
+            <nav class="nav-links">
+                <a href="#about">About</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+                <a href="contact.html" class="nav-cta">Download CV</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="hero" class="hero-bg">
-        <h1>Hi, I'm <span>Vidhi Joshi</span></h1>
-        <p>A passionate web developer creating beautiful and functional applications.</p>
-        <a href="projects.html" class="button">View Projects</a>
-        <a href="contact.html" class="button">Get In Touch</a>
-    </section>
+    <main id="main-content">
+        <!-- Hero Section -->
+        <section id="hero" class="hero">
+            <div class="shell hero-inner">
+                <div class="hero-copy">
+                    <div class="hero-tagline">
+                        <span class="hero-tagline-pill"></span>
+                        <span>Front-end developer & designer</span>
+                    </div>
+                    <h1 class="hero-heading">
+                        Hello, I'm <span>Vidhi</span> — crafting warm, story‑driven web experiences.
+                    </h1>
+                    <p class="hero-sub">
+                        I blend clean code with editorial-inspired layouts and soft, earthy palettes to build interfaces
+                        that feel thoughtful, modern, and a little bit magical.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">View projects</a>
+                        <a href="#contact" class="btn btn-secondary">Let’s collaborate</a>
+                    </div>
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-stat">3+ yrs</span>
+                            <span class="hero-meta-label">Building interfaces</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-stat">12+</span>
+                            <span class="hero-meta-label">Projects shipped</span>
+                        </div>
+                        <div class="hero-meta-item">
+                            <span class="hero-meta-stat">UI / UX</span>
+                            <span class="hero-meta-label">Focus areas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="hero-visual">
+                    <div class="hero-card">
+                        <div class="hero-card-tag">
+                            <span class="hero-card-tag-dot"></span>
+                            <span>Currently available for work</span>
+                        </div>
+                        <div class="hero-figure">
+                            <img src="assets/img/hero-illustration.png" alt="Illustration of Vidhi in a graphic tee and skirt">
+                        </div>
+                        <div class="hero-card-footer">
+                            <div class="hero-badge-stack">
+                                <span class="hero-badge-label">Specialising in</span>
+                                <span class="hero-badge-skill">Portfolio sites & brand-led web design</span>
+                            </div>
+                            <span class="hero-badge-pill">HTML • CSS • JS</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- About / Skills -->
+        <section id="about" class="section">
+            <div class="shell">
+                <div class="section-header">
+                    <div>
+                        <div class="section-eyebrow">About</div>
+                        <h2 class="section-title">A developer with a designer’s eye.</h2>
+                    </div>
+                    <p class="section-caption">
+                        I enjoy turning ideas into interfaces that feel cohesive — from the color palette and
+                        typography down to the tiny hover interactions that make a site feel alive.
+                    </p>
+                </div>
+
+                <div class="about-layout">
+                    <article class="card card-soft">
+                        <h3 class="card-heading">What I do</h3>
+                        <p class="card-body">
+                            I design and build responsive web experiences, with a focus on portfolios, landing pages,
+                            and small brand sites. I care about accessibility, performance, and crafting visuals that
+                            reflect the personality behind the work.
+                        </p>
+                        <div class="chips">
+                            <span class="chip">Interface design</span>
+                            <span class="chip">Front-end development</span>
+                            <span class="chip">Animation & micro‑interactions</span>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <h3 class="card-heading">Tech & tools</h3>
+                        <p class="card-body">
+                            HTML • CSS (Flexbox, Grid) • JavaScript • React basics • Figma • Git & GitHub.
+                        </p>
+                        <div class="chips">
+                            <span class="chip chip-alt">Visual storytelling</span>
+                            <span class="chip">Design systems</span>
+                            <span class="chip">Component libraries</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="section">
+            <div class="shell">
+                <div class="section-header">
+                    <div>
+                        <div class="section-eyebrow">Experience</div>
+                        <h2 class="section-title">Learning by building, one project at a time.</h2>
+                    </div>
+                    <p class="section-caption">
+                        From small practice projects to fully designed case studies, I’m constantly experimenting with
+                        layouts, palettes, and interactions.
+                    </p>
+                </div>
+
+                <div class="about-layout">
+                    <div class="card card-soft">
+                        <h3 class="card-heading">Highlights</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-label">2024 — Present</div>
+                                <div>
+                                    <div class="timeline-role">Personal portfolio & brand explorations</div>
+                                    <div class="timeline-meta">Curating a series of themed portfolio concepts and
+                                        translating them into working websites.</div>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-label">2023 — 2024</div>
+                                <div>
+                                    <div class="timeline-role">Frontend practice projects</div>
+                                    <div class="timeline-meta">Landing pages, dashboards, and components focused on
+                                        clean layouts and responsive behavior.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3 class="card-heading">How I work</h3>
+                        <p class="card-body">
+                            I start in Figma with moodboards and color palettes, explore compositions, then bring the
+                            design to life with semantic HTML, modern CSS, and just enough JavaScript to feel
+                            interactive.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Preview -->
+        <section id="projects" class="section">
+            <div class="shell">
+                <div class="section-header">
+                    <div>
+                        <div class="section-eyebrow">Projects</div>
+                        <h2 class="section-title">A glimpse into my work.</h2>
+                    </div>
+                    <p class="section-caption">
+                        Explore the full gallery for detailed write‑ups, design decisions, and before‑and‑after
+                        transformations.
+                    </p>
+                </div>
+
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <span class="project-pill">Case Study</span>
+                        <h3 class="project-name">Earth‑toned portfolio layout</h3>
+                        <p class="project-tags">Layout design • Color systems • Responsive build</p>
+                        <a href="projects.html" class="project-link">View details →</a>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-pill">UI Concept</span>
+                        <h3 class="project-name">Creative studio landing page</h3>
+                        <p class="project-tags">Hero composition • Scroll storytelling</p>
+                        <a href="projects.html" class="project-link">View details →</a>
+                    </article>
+                    <article class="project-card">
+                        <span class="project-pill">Practice</span>
+                        <h3 class="project-name">Component library in warm neutrals</h3>
+                        <p class="project-tags">Buttons • Cards • Navigation</p>
+                        <a href="projects.html" class="project-link">View details →</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Banner -->
+        <section id="contact" class="section section-contact">
+            <div class="shell">
+                <div class="contact-banner">
+                    <div>
+                        <div class="contact-text-main">Have a project or idea in mind?</div>
+                        <div class="contact-text-sub">Let’s design a warm, character-filled experience that feels like
+                            you.</div>
+                    </div>
+                    <div>
+                        <a href="contact.html" class="btn btn-secondary">Send a message</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Vidhi Joshi. All Rights Reserved.</p>
+        <div class="shell">
+            <span>&copy; 2025 Vidhi Joshi — All rights reserved.</span>
+            <div class="footer-right">
+                <span>Available for freelance</span>
+                <span>Based in India</span>
+            </div>
+        </div>
     </footer>
 
     <script src="js/main.js"></script>

@@ -559,6 +559,111 @@ header {
     color: #fff8f1;
 }
 
+/* ==== CONTACT PAGE ==== */
+.contact-page {
+    flex: 1;
+    padding: 4rem 0 5rem;
+    background: linear-gradient(180deg, var(--clr-bg) 0%, #1a1b1c 100%);
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 4rem;
+    align-items: start;
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-heading {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1em;
+    margin: 0;
+}
+
+.contact-email {
+    font-size: 1.1rem;
+    color: var(--clr-peachy-pink);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    transition: color 0.2s ease;
+}
+
+.contact-email:hover {
+    color: var(--clr-desert-coral);
+}
+
+.contact-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.contact-welcome {
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: var(--clr-text-muted);
+    max-width: 28rem;
+    margin: 0;
+}
+
+.contact-social-title {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--clr-text-muted);
+    margin: 0 0 0.9rem 0;
+}
+
+.contact-social-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.contact-social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--clr-text-main);
+    transition: color 0.2s ease;
+}
+
+.contact-social-link:hover {
+    color: var(--clr-peachy-pink);
+}
+
+.contact-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .contact-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 2.5rem;
+    }
+
+    .contact-heading {
+        font-size: 2.5rem;
+    }
+}
+
 /* ==== FOOTER ==== */
 footer {
     border-top: 1px solid rgba(235, 198, 181, 0.12);

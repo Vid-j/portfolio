@@ -1,5 +1,5 @@
 # Portfolio Website
-
+https://vid-j.github.io/portfolio/
 This repository contains the source code for a personal portfolio website showcasing projects, skills, and contact information.
 
 ## Project Structure
@@ -12,7 +12,7 @@ This repository contains the source code for a personal portfolio website showca
   - **project1.html**: Detailed information about Project 1.
   - **project2.html**: Detailed information about Project 2.
   - **project3.html**: Detailed information about Project 3.
-- **assets/css/styles.css**: CSS styles for layout, colors, fonts, and responsive design.
+- **assets/css/styles.css**: CSS styles for layout, colours, fonts, and responsive design.
 - **js/main.js**: JavaScript for interactive features like mobile menu toggling and project detail displays.
 
 ## Setup Instructions

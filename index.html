@@ -1,244 +1,591 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vidhi Joshi — Designer & Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --ink: #1A1612;
+      --rust: #C4532A;
+      --warm-mid: #8C7B6B;
+      --pale-rust: #EAD9CC;
+      --gold: #B8924A;
+      --light-line: #DDD4C5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── Custom cursor ── */
+    .cursor {
+      position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;
+      mix-blend-mode: multiply;
+    }
+    .cursor-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--rust);
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--rust);
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s ease, width 0.2s, height 0.2s;
+      position: absolute; top: 0; left: 0;
+    }
+    body:has(a:hover) .cursor-ring,
+    body:has(button:hover) .cursor-ring { width: 54px; height: 54px; }
+
+    /* ── Noise overlay ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: 0.4;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.6rem 3.5rem;
+      mix-blend-mode: multiply;
+    }
+    nav .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 400; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--ink); text-decoration: none;
+    }
+    nav ul { list-style: none; display: flex; gap: 2.4rem; }
+    nav ul a {
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none; color: var(--warm-mid);
+      transition: color 0.25s;
+    }
+    nav ul a:hover { color: var(--rust); }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem 3.5rem 5rem;
+      position: relative; z-index: 2;
+    }
+    .hero-tag {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--rust);
+      margin-bottom: 1.8rem;
+    }
+    .hero-name {
+      font-size: clamp(4rem, 7vw, 7.5rem);
+      font-weight: 300; line-height: 0.92; letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+    .hero-name em { font-style: italic; color: var(--rust); }
+    .hero-desc {
+      font-size: 1.15rem; font-weight: 300; color: var(--warm-mid);
+      max-width: 380px; line-height: 1.7; margin-bottom: 3rem;
+    }
+    .hero-links {
+      display: flex; gap: 1.6rem; align-items: center; flex-wrap: wrap;
+    }
+    .hero-links a {
+      font-family: 'DM Mono', monospace; font-size: 0.68rem;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink); text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
+    }
+    .hero-links a:hover { color: var(--rust); border-color: var(--rust); }
+    .hero-right {
+      position: relative; overflow: hidden;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--pale-rust) 0%, #D4A882 50%, #A06845 100%);
+    }
+    .hero-right-text {
+      position: absolute; bottom: 5rem; right: 3.5rem;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero-big-letter {
+      position: absolute; font-size: 42vw; font-weight: 300;
+      color: rgba(255,255,255,0.07); line-height: 1;
+      top: -5%; left: -5%; font-family: 'Cormorant Garamond', serif;
+      pointer-events: none;
+    }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.6rem;
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--warm-mid);
+      z-index: 2;
+    }
+    .hero-scroll span { display: block; width: 1px; height: 48px; background: var(--light-line); animation: scrollLine 1.8s ease infinite; }
+    @keyframes scrollLine { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.4);opacity:0.3} }
+
+    /* ── Section base ── */
+    section { position: relative; z-index: 1; }
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 0.65rem;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--rust);
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 3rem;
+    }
+    .section-label::after { content:''; flex: 1; height: 1px; background: var(--light-line); }
+
+    /* ── About ── */
+    .about {
+      padding: 8rem 3.5rem;
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem;
+      align-items: center;
+    }
+    .about-left h2 {
+      font-size: clamp(2.4rem, 4vw, 3.8rem); font-weight: 300;
+      line-height: 1.15; letter-spacing: -0.01em;
+    }
+    .about-left h2 em { font-style: italic; color: var(--rust); }
+    .about-right p {
+      font-size: 1.1rem; line-height: 1.9; color: var(--warm-mid);
+      margin-bottom: 1.4rem;
+    }
+    .about-right p:last-child { margin-bottom: 0; }
+    .about-skills { margin-top: 2.4rem; display: flex; flex-wrap: wrap; gap: 0.7rem; }
+    .skill-pill {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.4rem 0.9rem; border: 1px solid var(--light-line);
+      color: var(--warm-mid); transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-pill:hover { border-color: var(--rust); color: var(--rust); }
+
+    /* ── Education ── */
+    .education {
+      padding: 5rem 3.5rem 8rem;
+      border-top: 1px solid var(--light-line);
+    }
+    .edu-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      padding: 2.5rem 0; border-bottom: 1px solid var(--light-line);
+      position: relative;
+    }
+    .edu-card::before {
+      content: '';
+      position: absolute; left: -3.5rem; top: 0; bottom: 0;
+      width: 2px; background: transparent;
+      transition: background 0.3s;
+    }
+    .edu-card:hover::before { background: var(--rust); }
+    .edu-school {
+      font-size: 1.5rem; font-weight: 400; letter-spacing: -0.01em;
+      margin-bottom: 0.4rem;
+    }
+    .edu-degree {
+      font-size: 0.95rem; font-style: italic; color: var(--warm-mid);
+      margin-bottom: 0.8rem;
+    }
+    .edu-activities {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      color: var(--warm-mid); line-height: 1.7; letter-spacing: 0.03em;
+    }
+    .edu-meta {
+      text-align: right; font-family: 'DM Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.1em;
+      color: var(--rust); align-self: start; padding-top: 0.3rem;
+    }
+
+    /* ── Experience ── */
+    .experience { padding: 5rem 3.5rem 8rem; }
+    .exp-grid { display: grid; gap: 0; }
+    .exp-item {
+      display: grid; grid-template-columns: 2fr 3fr;
+      gap: 3rem; padding: 3rem 0;
+      border-top: 1px solid var(--light-line);
+      transition: background 0.2s;
+      position: relative;
+    }
+    .exp-item::before {
+      content: '';
+      position: absolute; left: -3.5rem; top: 0; bottom: 0;
+      width: 2px; background: transparent; transition: background 0.3s;
+    }
+    .exp-item:hover::before { background: var(--rust); }
+    .exp-meta {}
+    .exp-title { font-size: 1.35rem; font-weight: 400; margin-bottom: 0.3rem; }
+    .exp-company { font-size: 0.9rem; font-style: italic; color: var(--warm-mid); margin-bottom: 0.6rem; }
+    .exp-date {
+      font-family: 'DM Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.1em; color: var(--rust);
+    }
+    .exp-location {
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.08em; color: var(--warm-mid); margin-top: 0.3rem;
+    }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      font-size: 1rem; line-height: 1.75; color: var(--warm-mid);
+      padding: 0.3rem 0; border-bottom: 1px solid transparent;
+      padding-left: 1.2rem; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '—'; position: absolute; left: 0;
+      color: var(--rust); font-size: 0.8rem;
+    }
+
+    /* ── Skills bar ── */
+    .skills-section {
+      padding: 6rem 3.5rem;
+      background: var(--ink); color: var(--cream);
+    }
+    .skills-section .section-label { color: var(--rust); }
+    .skills-section .section-label::after { background: rgba(255,255,255,0.1); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem;
+    }
+    .skill-group h3 {
+      font-size: 0.65rem; font-family: 'DM Mono', monospace;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.4rem;
+    }
+    .skill-group ul { list-style: none; }
+    .skill-group ul li {
+      font-size: 1rem; font-weight: 300; color: rgba(245,240,232,0.7);
+      padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ── Footer / contact ── */
+    footer {
+      padding: 8rem 3.5rem 4rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: end;
+    }
+    footer h2 {
+      font-size: clamp(2.8rem, 5vw, 5.5rem); font-weight: 300;
+      line-height: 1; letter-spacing: -0.02em; color: var(--ink);
+    }
+    footer h2 em { font-style: italic; color: var(--rust); }
+    .footer-right { display: flex; flex-direction: column; gap: 1rem; align-items: flex-end; }
+    .footer-link {
+      font-family: 'DM Mono', monospace; font-size: 0.7rem;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; color: var(--warm-mid);
+      display: flex; align-items: center; gap: 0.8rem;
+      transition: color 0.2s; border: none;
+    }
+    .footer-link:hover { color: var(--rust); }
+    .footer-link span {
+      width: 24px; height: 1px; background: currentColor;
+      display: inline-block; transition: width 0.3s;
+    }
+    .footer-link:hover span { width: 48px; }
+    .footer-copy {
+      grid-column: 1 / -1; border-top: 1px solid var(--light-line);
+      padding-top: 2rem; margin-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      letter-spacing: 0.12em; color: var(--warm-mid);
+    }
+
+    /* ── Decorative number markers ── */
+    .num-marker {
+      font-family: 'DM Mono', monospace; font-size: 0.6rem;
+      color: var(--rust); letter-spacing: 0.1em;
+      margin-bottom: 0.4rem; display: block;
+    }
+
+    /* ── Reveal animations ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.8rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 50vh; }
+      .hero-left { padding: 8rem 1.8rem 4rem; }
+      .about, .edu-card, .exp-item { grid-template-columns: 1fr; gap: 1.5rem; }
+      .about { padding: 5rem 1.8rem; }
+      .education, .experience { padding: 4rem 1.8rem; }
+      .edu-meta { text-align: left; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-section { padding: 4rem 1.8rem; }
+      footer { grid-template-columns: 1fr; padding: 5rem 1.8rem 3rem; gap: 2rem; }
+      .footer-right { align-items: flex-start; }
+      nav ul { gap: 1.2rem; }
+    }
+  </style>
 </head>
-<body class="page">
+<body>
 
-    <!-- Navigation Bar -->
-    <header>
-        <div class="shell nav">
-            <a class="nav-home" href="index.html" aria-label="Go to home">
-                <div class="nav-left">
-                    <div class="nav-mark">VJ</div>
-                    <div class="nav-title">
-                        <span>PORTFOLIO</span>
-                        <span>Vidhi Joshi</span>
-                    </div>
-                </div>
-            </a>
-            <nav class="nav-links">
-                <a href="#about">About</a>
-                <a href="#experience">Experience</a>
-                <a href="#projects">Projects</a>
-                <a href="contact.html">Contact</a>
-                <a href="assets/Vidhi-Joshi-CV.pdf" class="nav-cta" download>Download CV</a>
-            </nav>
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor">
+    <div class="cursor-ring"></div>
+    <div class="cursor-dot"></div>
+  </div>
+
+  <!-- Nav -->
+  <nav>
+    <a href="index.html" class="logo">V·J</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Work</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-tag">Designer · Developer · Researcher</p>
+      <h1 class="hero-name">
+        Vidhi<br><em>Joshi</em>
+      </h1>
+      <p class="hero-desc">
+        Computer Science meets Art History. I build interfaces where logic becomes beauty — from conversational AI systems to embedded research tools.
+      </p>
+      <div class="hero-links">
+        <a href="mailto:vjoshi43@uwo.ca">Email</a>
+        <a href="https://linkedin.com/in/vidhi-joshi-b2b08729a/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/Vid-j" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="tel:4167232927">416·723·2927</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-big-letter">V</div>
+      <div class="hero-right-text">Toronto · San Francisco · London, Ontario</div>
+    </div>
+    <div class="hero-scroll">
+      <p>Scroll</p>
+      <span></span>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="about" id="about">
+    <div class="about-left reveal">
+      <div class="section-label">About</div>
+      <h2>Where code<br>meets <em>craft</em></h2>
+    </div>
+    <div class="about-right reveal reveal-d1">
+      <p>
+        I'm a dual-major student at Western University pursuing Computer Science alongside Art History & Studio Arts — a rare combination that gives me both the technical rigour to engineer scalable systems and the visual literacy to design experiences that resonate.
+      </p>
+      <p>
+        My work spans conversational UI, embedded hardware systems, UX research, and strategic AI implementation. I'm drawn to the space where human intuition and machine intelligence overlap.
+      </p>
+      <div class="about-skills">
+        <span class="skill-pill">CSS / HTML / JS</span>
+        <span class="skill-pill">Python</span>
+        <span class="skill-pill">C++</span>
+        <span class="skill-pill">GLSL</span>
+        <span class="skill-pill">Figma</span>
+        <span class="skill-pill">Affinity</span>
+        <span class="skill-pill">Arduino</span>
+        <span class="skill-pill">Raspberry Pi</span>
+        <span class="skill-pill">SQL</span>
+        <span class="skill-pill">UX Research</span>
+        <span class="skill-pill">UI Design</span>
+        <span class="skill-pill">Visual Arts</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="education" id="education">
+    <div class="section-label reveal">Education</div>
+    <div class="edu-card reveal reveal-d1">
+      <div>
+        <span class="num-marker">01</span>
+        <div class="edu-school">Western University</div>
+        <div class="edu-degree">BSc. Honours — Computer Science &amp; Art History + Studio Arts</div>
+        <div class="edu-activities">
+          VP Finance, Purple Yogis (2025–26)<br>
+          Junior Newsletter Executive, Purple Yogis (2024–25)<br>
+          Communications Executive, Hindu Students Council (2025–26)
         </div>
-    </header>
+      </div>
+      <div class="edu-meta">
+        Sept 2022 – Oct 2026<br>London, Ontario
+      </div>
+    </div>
+  </section>
 
-    <main id="main-content">
-        <!-- Hero Section -->
-        <section id="hero" class="hero">
-            <div class="shell hero-inner">
-                <div class="hero-copy">
-                    <div class="hero-tagline">
-                        <span class="hero-tagline-pill"></span>
-                        <span>Front-end developer & designer</span>
-                    </div>
-                    <h1 class="hero-heading">
-                        Hello, I'm <span>Vidhi</span> — just crafting innovative, user centered web experiences.
-                    </h1>
-                    <p class="hero-sub">
-                        I blend clean code with editorial-inspired layouts and soft, earthy palettes to build interfaces
-                        that feel thoughtful, modern, and a little bit magical.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#projects" class="btn btn-primary">View projects</a>
-                        <a href="#contact" class="btn btn-secondary">Let’s collaborate</a>
-                    </div>
-                    <div class="hero-meta">
-                        <div class="hero-meta-item">
-                            <span class="hero-meta-stat">Western</span>
-                            <span class="hero-meta-label">BSc CS & Studio Arts</span>
-                        </div>
-                        <div class="hero-meta-item">
-                            <span class="hero-meta-stat">Research + Tech</span>
-                            <span class="hero-meta-label">Experience</span>
-                        </div>
-                        <div class="hero-meta-item">
-                            <span class="hero-meta-stat">UI / UX</span>
-                            <span class="hero-meta-label">Design & dev</span>
-                        </div>
-                    </div>
-                </div>
+  <!-- Experience -->
+  <section class="experience" id="experience">
+    <div class="section-label reveal">Experience</div>
+    <div class="exp-grid">
 
-                <aside class="hero-visual">
-                    <div class="hero-card-tag">
-                        <span class="hero-card-tag-dot"></span>
-                        <span>Currently available for work</span>
-                    </div>
-                    <div class="hero-figure">
-                        <img src="assets/img/hero-illustration.png" alt="Illustration of Vidhi in a graphic tee and skirt">
-                    </div>
-                    <div class="hero-card-footer">
-                        <div class="hero-badge-stack">
-                            <span class="hero-badge-label">Specialising in</span>
-                            <span class="hero-badge-skill">Figma • React • Adobe Suite • UX research</span>
-                        </div>
-                        <span class="hero-badge-pill">HTML • CSS • JS • Python</span>
-                    </div>
-                </aside>
-            </div>
-        </section>
-
-        <!-- About / Skills -->
-        <section id="about" class="section">
-            <div class="shell">
-                <div class="section-header">
-                    <div>
-                        <div class="section-eyebrow">About</div>
-                        <h2 class="section-title">A developer with a designer’s eye.</h2>
-                    </div>
-                    <p class="section-caption">
-                        Dual major in Computer Science and Art History & Studio Arts at Western. I translate brand narratives into clear digital experiences, with a clean user centered design.
-                    </p>
-                </div>
-
-                <div class="about-layout">
-                    <article class="card card-soft">
-                        <h3 class="card-heading">What I do</h3>
-                        <p class="card-body">
-                            I design and build interfaces that bridge technical data and visual storytelling — from
-                            research dashboards and chatbots to portfolios and social assets. I care about accessibility,
-                            consistency, and making complex information easy to use.
-                        </p>
-                        <div class="chips">
-                            <span class="chip">Interface design</span>
-                            <span class="chip">UX research & prototyping</span>
-                            <span class="chip">Brand identity & visual storytelling</span>
-                        </div>
-                    </article>
-
-                    <article class="card">
-                        <h3 class="card-heading">Tech & tools</h3>
-                        <p class="card-body">
-                            HTML, CSS, JavaScript, React, Python, C++, Git. Figma, Adobe Photoshop, Illustrator, Premiere Pro.
-                            Arduino, Raspberry Pi, GLSL. AODA-aware design.
-                        </p>
-                        <div class="chips">
-                            <span class="chip chip-alt">Figma • Adobe Suite</span>
-                            <span class="chip">React • AWS S3/CloudFront</span>
-                            <span class="chip">Wireframing • journey mapping</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience -->
-        <section id="experience" class="section">
-            <div class="shell">
-                <div class="section-header">
-                    <div>
-                        <div class="section-eyebrow">Experience</div>
-                        <h2 class="section-title">Research, product, and design.</h2>
-                    </div>
-                    <p class="section-caption">
-                        From embedded research tools and chatbots to brand guidelines and cross-functional product
-                        launches.
-                    </p>
-                </div>
-
-                <div class="about-layout">
-                    <div class="card card-soft">
-                        <h3 class="card-heading">Roles</h3>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-label">Mar 2025 — Present</div>
-                                <div>
-                                    <div class="timeline-role">Research Assistant · Haudenosaunee POD, Western University</div>
-                                    <div class="timeline-meta">Designing visual brand guidelines and intuitive UI for interactive research tools across 3+ projects. Building embedded dashboards (Arduino, Raspberry Pi), PDF-to-text tools (Tesseract OCR, OpenGL), and lidar/OpenGL pipelines. Cross-functional collaboration to align technical development with researcher needs — improved onboarding and data accuracy.</div>
-                                </div>
-                            </div>
-                            <div class="timeline-item">
-                                <div class="timeline-label">May 2023 — Aug 2023</div>
-                                <div>
-                                    <div class="timeline-role">Tech Intern · Softsages Technologies, India</div>
-                                    <div class="timeline-meta">Designed and integrated Telegram & WhatsApp chatbots; improved engagement with streamlined conversational UX. Developed and tested user-facing modules with iterative prototyping. Supported 3 product launches with custom assets and Agile collaboration with marketing.</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card">
-                        <h3 class="card-heading">Education & leadership</h3>
-                        <p class="card-body">
-                            BSc Honours, Double Major in Computer Science and Art History & Studio Arts, Western University (Sept 2022 – Oct 2026). VP Finance, Purple Yogis; Communications Executive, Hindu Students Council; Junior Newsletter Executive, Purple Yogis.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Preview -->
-        <section id="projects" class="section">
-            <div class="shell">
-                <div class="section-header">
-                    <div>
-                        <div class="section-eyebrow">Projects</div>
-                        <h2 class="section-title">A glimpse into my work.</h2>
-                    </div>
-                    <p class="section-caption">
-                        Explore the full gallery for detailed write‑ups, design decisions, and before‑and‑after
-                        transformations.
-                    </p>
-                </div>
-
-                <div class="projects-grid">
-                    <article class="project-card">
-                        <span class="project-pill">Personal project</span>
-                        <h3 class="project-name">Artispace</h3>
-                        <p class="project-tags">Full‑stack • exhibition‑style portfolios • gallery‑inspired UI • secure media handling • discovery network</p>
-                        <a href="projects.html" class="project-link">View details →</a>
-                    </article>
-                    <article class="project-card">
-                        <span class="project-pill">Research</span>
-                        <h3 class="project-name">Chladni Plate Simulation</h3>
-                        <p class="project-tags">Max/MSP • GLSL shaders • Python • cymatics • Hindu yantras • mantra‑driven generative patterns</p>
-                        <a href="projects.html" class="project-link">View details →</a>
-                    </article>
-                    <article class="project-card">
-                        <span class="project-pill">Research / sustainability</span>
-                        <h3 class="project-name">Sustain the Arts</h3>
-                        <p class="project-tags">LCA • Green AI • sustainability scoring • multiuser database • museum & curatorial tech</p>
-                        <a href="projects.html" class="project-link">View details →</a>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Banner -->
-        <section id="contact" class="section section-contact">
-            <div class="shell">
-                <div class="contact-banner">
-                    <div>
-                        <div class="contact-text-main">Have a project or idea in mind?</div>
-                        <div class="contact-text-sub">Let’s design a warm, character-filled experience that feels like
-                            you.</div>
-                    </div>
-                    <div>
-                        <a href="contact.html" class="btn btn-secondary">Get in touch</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="shell">
-            <span>&copy; 2025 Vidhi Joshi — All rights reserved.</span>
-            <div class="footer-right">
-                <span>London, ON | Toronto, ON</span>
-                <span>vjoshi43@uwo.ca</span>
-            </div>
+      <!-- Riipen -->
+      <div class="exp-item reveal">
+        <div class="exp-meta">
+          <span class="num-marker">03</span>
+          <div class="exp-title">Strategic Project Lead</div>
+          <div class="exp-company">Riipen</div>
+          <div class="exp-date">March 2026 – April 2026</div>
+          <div class="exp-location">Remote</div>
         </div>
-    </footer>
+        <ul class="exp-bullets">
+          <li>Led end-to-end growth strategy for an AI implementation consultancy, delivering business transformations for CXO-level clients and expanding pipeline by 30%.</li>
+          <li>Developed a Human-Centered Thought Leadership model emphasising ethical AI, human-in-the-loop, and bias mitigation.</li>
+          <li>Engineered an ABX engine uniting phygital touchpoints, a proprietary Myth-Busting blog, and executive social presence to generate high-intent inbound leads.</li>
+          <li>Orchestrated a 4-person research, ops &amp; communications team to deliver a unified implementation roadmap, cutting planning time by 25%.</li>
+        </ul>
+      </div>
 
-    <script src="js/main.js"></script>
+      <!-- Haudenosaunee POD -->
+      <div class="exp-item reveal reveal-d1">
+        <div class="exp-meta">
+          <span class="num-marker">02</span>
+          <div class="exp-title">Research Assistant</div>
+          <div class="exp-company">Haudenosaunee POD</div>
+          <div class="exp-date">March 2025 – Present</div>
+          <div class="exp-location">Western University, London, Ontario</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Designed and documented interactive research tools with intuitive UI elements, supporting 3+ projects and enhancing data collection accuracy.</li>
+          <li>Developed embedded system dashboards and visual records that simplified complex data analysis, increasing researcher efficiency by 30%.</li>
+          <li>Collaborated with multidisciplinary teams to adapt UX workflows, aligning technical development with researcher requirements.</li>
+          <li>Engineered research systems using Arduino and Raspberry Pi, enabling enhanced data collection and streamlined workflows.</li>
+        </ul>
+      </div>
+
+      <!-- Softsages -->
+      <div class="exp-item reveal reveal-d2">
+        <div class="exp-meta">
+          <span class="num-marker">01</span>
+          <div class="exp-title">Tech Intern</div>
+          <div class="exp-company">Softsages Technologies</div>
+          <div class="exp-date">May 2023 – August 2023</div>
+          <div class="exp-location">India</div>
+        </div>
+        <ul class="exp-bullets">
+          <li>Engineered conversational UI flows for Telegram and WhatsApp chatbots, boosting user engagement by 40% through intuitive, seamless interactions.</li>
+          <li>Developed and tested user-facing modules using iterative prototyping and usability feedback, decreasing response errors by 25%.</li>
+          <li>Led cross-functional collaboration to deploy client-facing web apps, increasing customer satisfaction by 30%.</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section class="skills-section" id="skills">
+    <div class="section-label reveal">Skills &amp; Toolkit</div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h3>Coding</h3>
+        <ul>
+          <li>CSS / HTML / JS</li>
+          <li>Python</li>
+          <li>C++</li>
+          <li>SQL</li>
+          <li>GLSL</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal reveal-d1">
+        <h3>Design &amp; Visual</h3>
+        <ul>
+          <li>Figma</li>
+          <li>Affinity Suite</li>
+          <li>Visual Thinking</li>
+          <li>Studio Arts</li>
+          <li>UI / UX Design</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal reveal-d2">
+        <h3>Technical</h3>
+        <ul>
+          <li>Arduino &amp; Raspberry Pi</li>
+          <li>UML</li>
+          <li>OOD &amp; Analysis</li>
+          <li>User Research</li>
+          <li>Excel</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal reveal-d3">
+        <h3>Soft Skills</h3>
+        <ul>
+          <li>Communications</li>
+          <li>Adaptability</li>
+          <li>Problem Solving</li>
+          <li>Teamwork</li>
+          <li>Fast Learner</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer / Contact -->
+  <footer id="contact">
+    <div class="reveal">
+      <div class="section-label">Get in touch</div>
+      <h2>Let's make<br>something <em>real</em></h2>
+    </div>
+    <div class="footer-right reveal reveal-d1">
+      <a href="mailto:vjoshi43@uwo.ca" class="footer-link">
+        vjoshi43@uwo.ca <span></span>
+      </a>
+      <a href="https://linkedin.com/in/vidhi-joshi-b2b08729a/" target="_blank" rel="noopener noreferrer" class="footer-link">
+        LinkedIn <span></span>
+      </a>
+      <a href="https://github.com/Vid-j" target="_blank" rel="noopener noreferrer" class="footer-link">
+        GitHub <span></span>
+      </a>
+      <a href="tel:4167232927" class="footer-link">
+        416·723·2927 <span></span>
+      </a>
+    </div>
+    <div class="footer-copy">
+      <span>© 2026 Vidhi Joshi</span>
+      <span>Toronto · San Francisco · London, Ontario</span>
+    </div>
+  </footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const dot = cursor.querySelector('.cursor-dot');
+    const ring = cursor.querySelector('.cursor-ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`; });
+    function animRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`; requestAnimationFrame(animRing); }
+    animRing();
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => obs.observe(el));
+  </script>
 </body>
 </html>

@@ -298,23 +298,9 @@ header {
 /* ==== HERO VISUAL ==== */
 .hero-visual {
     align-self: stretch;
-}
-
-.hero-card {
-    position: relative;
-    height: 100%;
-    min-height: 480px;
-    border-radius: 1.6rem;
-    padding: 1.4rem 1.3rem 1.6rem;
-    background:
-        radial-gradient(circle at 0 0, rgba(235, 198, 181, 0.16), transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(121, 110, 84, 0.55), transparent 52%),
-        linear-gradient(145deg, #1e1817, #111618);
-    border: 1px solid rgba(235, 198, 181, 0.3);
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1rem;
 }
 
 .hero-card-tag {
@@ -339,9 +325,12 @@ header {
 
 .hero-figure {
     position: relative;
-    margin-top: 1.4rem;
+    margin-top: 0;
     display: flex;
     justify-content: center;
+    flex: 1;
+    min-height: 0;
+    align-items: center;
 }
 
 .hero-figure img {
@@ -357,7 +346,7 @@ header {
     align-items: center;
     justify-content: space-between;
     gap: 0.75rem;
-    margin-top: 1.2rem;
+    margin-top: 0;
 }
 
 .hero-badge-stack {

@@ -212,7 +212,7 @@
 .hero__code {
   font-family: var(--font-mono);
   font-size: 0.58rem;
-  color: rgba(224, 86, 253, 0.55);
+  color: rgba(112, 81, 38, 0.55);
   text-align: right;
   line-height: 1.9;
 }

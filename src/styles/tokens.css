@@ -1,0 +1,18 @@
+:root {
+  --charcoal: #0e0e10;
+  --charcoal-light: #16161a;
+  --charcoal-mid: #1c1c22;
+  --off-white: #e8e4dc;
+  --muted: #8a8494;
+  --cyan: #4ecdc4;
+  --pink: #e056fd;
+  --gold: #b8924a;
+  --line: rgba(232, 228, 220, 0.12);
+  --line-bright: rgba(78, 205, 196, 0.35);
+  --font-serif: 'Cormorant Garamond', serif;
+  --font-mono: 'DM Mono', monospace;
+  --nav-height: 4.5rem;
+  --section-pad: clamp(3rem, 6vw, 6rem);
+  --content-max: 72rem;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

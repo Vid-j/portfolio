@@ -78,56 +78,6 @@ export function sampleSphere(n: number): Point2D[] {
   return pts;
 }
 
-export function sampleFace(n: number): Point2D[] {
-  const pts: Point2D[] = [];
-  for (let i = 0; i < n * 0.25; i++) {
-    const t = (i / (n * 0.25)) * Math.PI * 2;
-    const rx = 0.18 + (Math.random() - 0.5) * 0.012;
-    const ry = 0.24 + (Math.random() - 0.5) * 0.012;
-    pts.push({ x: 0.5 + Math.cos(t) * rx, y: 0.42 + Math.sin(t) * ry });
-  }
-  for (let s = -1; s <= 1; s += 2) {
-    for (let i = 0; i < n * 0.08; i++) {
-      const t = (i / (n * 0.08)) * Math.PI * 2;
-      pts.push({
-        x: 0.5 + s * 0.07 + Math.cos(t) * 0.038,
-        y: 0.4 + Math.sin(t) * 0.018 * 0.7,
-      });
-    }
-  }
-  for (let i = 0; i < n * 0.05; i++) {
-    const t = i / (n * 0.05);
-    pts.push({ x: 0.5 + (Math.random() - 0.5) * 0.022, y: 0.44 + t * 0.1 });
-  }
-  for (let i = 0; i < n * 0.1; i++) {
-    const t = (i / (n * 0.1)) * Math.PI;
-    pts.push({
-      x: 0.5 + Math.cos(t) * 0.06 * (i < n * 0.05 ? 1 : -1),
-      y: 0.57 + Math.sin(t) * 0.022,
-    });
-  }
-  for (let i = 0; i < n * 0.15; i++) {
-    pts.push({
-      x: 0.5 + (Math.random() - 0.5) * 0.3,
-      y: 0.18 + Math.random() * 0.08,
-    });
-  }
-  for (let i = 0; i < n * 0.12; i++) {
-    const t = i / (n * 0.12);
-    pts.push({
-      x: 0.5 + (Math.random() - 0.5) * 0.22,
-      y: 0.67 + t * 0.1,
-    });
-  }
-  const rem = n - pts.length;
-  for (let i = 0; i < rem; i++) {
-    const a = Math.random() * Math.PI * 2;
-    const r = Math.random() * 0.22;
-    pts.push({ x: 0.5 + Math.cos(a) * r, y: 0.45 + Math.sin(a) * r });
-  }
-  return pts;
-}
-
 export function sampleDNA(n: number): Point2D[] {
   const pts: Point2D[] = [];
   for (let i = 0; i < n * 0.45; i++) {
@@ -155,7 +105,6 @@ export const SHAPES: ShapeDef[] = [
   { name: 'BUTTERFLY', gen: sampleButterfly, color: [0.25, 1.0, 0.78] },
   { name: 'FLOWER', gen: sampleFlower, color: [0.31, 0.8, 0.77] },
   { name: 'SPHERE', gen: sampleSphere, color: [0.5, 0.85, 1.0] },
-  { name: 'PORTRAIT', gen: sampleFace, color: [0.88, 0.34, 0.99] },
   { name: 'HELIX', gen: sampleDNA, color: [1.0, 0.7, 0.25] },
 ];
 

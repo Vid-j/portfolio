@@ -109,8 +109,8 @@
   min-height: 100vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  align-items: end;
-  padding: calc(var(--nav-height) + 2rem) clamp(1.25rem, 4vw, 3rem) 4rem;
+  align-items: center;
+  padding: calc(var(--nav-height) + 2rem) clamp(1.25rem, 4vw, 3rem) 5.5rem;
   max-width: var(--content-max);
   margin: 0 auto;
   position: relative;
@@ -204,9 +204,8 @@
 .hero__meta {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
-  padding-bottom: 2rem;
   gap: 2rem;
 }
 
@@ -230,9 +229,10 @@
 
 .hero__scroll {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -242,6 +242,7 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--muted);
+  pointer-events: none;
 }
 
 .hero__scroll span {

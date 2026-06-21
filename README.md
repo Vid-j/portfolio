@@ -14,14 +14,28 @@ Live site: https://vid-j.github.io/portfolio/
 
 ## Routes
 
-| URL | Page |
-|-----|------|
-| `/portfolio/` | Landing hub — email capture + path selection |
-| `/portfolio/dev.html` | Software / development portfolio |
-| `/portfolio/gallery.html` | Virtual art gallery (Phase 1 scaffold) |
-| `/portfolio/thoughts.html` | Thoughts blog listing (Phase 1 scaffold) |
+| URL (Vercel) | URL (GitHub Pages) | Page |
+|--------------|-------------------|------|
+| `/` | `/portfolio/` | Landing hub |
+| `/dev.html` | `/portfolio/dev.html` | Dev portfolio |
+| `/gallery.html` | `/portfolio/gallery.html` | Art gallery |
+| `/thoughts.html` | `/portfolio/thoughts.html` | Thoughts blog |
 
 Each route has a distinct visual language and GSAP transition when entering from or returning to the hub.
+
+## Deploy
+
+### Vercel (recommended)
+
+The build auto-detects Vercel (`VERCEL=1`) and uses `/` as the asset base path. Push to your connected repo — `vercel.json` sets `outputDirectory: dist`.
+
+If assets 404 after a previous deploy, trigger a **fresh redeploy** so the build picks up the new base path.
+
+### GitHub Pages
+
+Build uses `/portfolio/` as the base path (project-site hosting). Deploy the contents of `dist/` to GitHub Pages.
+
+To force a base path: `VITE_BASE_PATH=/portfolio/ npm run build`
 
 ## Project structure
 
@@ -84,7 +98,7 @@ npm run build
 npm run preview   # optional local preview of dist/
 ```
 
-Deploy the contents of `dist/` to GitHub Pages. All four HTML entry points are emitted to `dist/`.
+All four HTML entry points are emitted to `dist/`.
 
 ## Legacy files
 

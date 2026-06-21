@@ -16,7 +16,11 @@ initEnterTransition('gallery');
 
 const canvas = document.getElementById('webgl-canvas') as HTMLCanvasElement | null;
 if (canvas) {
-  createScene(canvas);
+  try {
+    createScene(canvas);
+  } catch (err) {
+    console.warn('WebGL background unavailable:', err);
+  }
 }
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

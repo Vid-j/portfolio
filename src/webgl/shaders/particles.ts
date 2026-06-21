@@ -1,4 +1,6 @@
 export const particleVertexShader = /* glsl */ `
+precision mediump float;
+
 attribute vec2 a_pos;
 attribute float a_life;
 attribute float a_type;

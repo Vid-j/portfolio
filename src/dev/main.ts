@@ -18,15 +18,20 @@ initBackToHome('dev');
 initEnterTransition('dev');
 
 const canvas = document.getElementById('webgl-canvas') as HTMLCanvasElement | null;
-if (!canvas) {
-  throw new Error('#webgl-canvas not found');
+if (canvas) {
+  try {
+    const webgl = createScene(canvas);
+    const scroll = initScroll();
+
+    scroll.lenis?.on('scroll', () => {
+      webgl.setScroll(scroll.lenis?.scroll ?? 0);
+    });
+
+    initReveals(scroll.lenis);
+  } catch (err) {
+    console.warn('WebGL background unavailable:', err);
+    initReveals(null);
+  }
+} else {
+  initReveals(null);
 }
-
-const webgl = createScene(canvas);
-const scroll = initScroll();
-
-scroll.lenis?.on('scroll', () => {
-  webgl.setScroll(scroll.lenis?.scroll ?? 0);
-});
-
-initReveals(scroll.lenis);

@@ -4,6 +4,7 @@ import { escapeHtml } from '../ui/helpers';
 
 export function renderHub(): string {
   return `
+    <canvas id="hub-bloom-canvas" aria-hidden="true"></canvas>
     <div class="hub">
       <header class="hub__header">
         <p class="hub__eyebrow">Welcome</p>

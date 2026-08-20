@@ -1,5 +1,4 @@
 import '../styles/gallery.css';
-import { initBackToHome, initEnterTransition } from '../motion/routeTransitions';
 import { renderGallery } from './renderGallery';
 
 document.documentElement.classList.add('js-ready');
@@ -10,8 +9,6 @@ if (!app) {
 }
 
 app.innerHTML = renderGallery();
-initBackToHome('gallery');
-initEnterTransition('gallery');
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!reducedMotion) {

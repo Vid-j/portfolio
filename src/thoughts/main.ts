@@ -1,5 +1,4 @@
 import '../styles/thoughts.css';
-import { initBackToHome, initEnterTransition } from '../motion/routeTransitions';
 import { renderThoughts } from './renderThoughts';
 
 document.documentElement.classList.add('js-ready');
@@ -10,9 +9,6 @@ if (!app) {
 }
 
 app.innerHTML = renderThoughts();
-initBackToHome('thoughts');
-initEnterTransition('thoughts');
-
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!reducedMotion) {
   document.querySelectorAll<HTMLElement>('.reveal').forEach((el, i) => {

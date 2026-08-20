@@ -129,7 +129,7 @@ export function renderDevPage(): string {
           src="${escapeHtml(`${import.meta.env.BASE_URL}images/vidhi-joshi.png`)}"
           alt="Vidhi Joshi"
           width="162"
-          height="64"
+          height="59"
         />
       </a>
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">Menu</button>

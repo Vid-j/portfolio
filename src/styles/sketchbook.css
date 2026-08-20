@@ -56,13 +56,21 @@ body {
   right: 0;
   z-index: 100;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
   gap: 1rem;
   padding: 1.2rem clamp(1.25rem, 4vw, 3rem);
   background: linear-gradient(to bottom, rgba(8, 4, 21, 0.92), transparent);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
+  pointer-events: none;
+}
+
+.nav .back-home,
+.nav .nav__toggle,
+.nav .nav__links,
+.nav .nav__links a {
+  pointer-events: auto;
 }
 
 .nav__links {

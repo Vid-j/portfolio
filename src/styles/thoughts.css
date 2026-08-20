@@ -42,6 +42,12 @@ body::after {
   align-items: center;
   padding: 1.2rem clamp(1.25rem, 4vw, 3rem);
   background: linear-gradient(to bottom, rgba(245, 240, 230, 0.97), transparent);
+  pointer-events: none;
+}
+
+.thoughts-nav .back-home,
+.thoughts-nav .thoughts-nav__mark {
+  pointer-events: auto;
 }
 
 .thoughts-nav__mark {

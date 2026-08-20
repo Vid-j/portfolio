@@ -11,7 +11,7 @@
   --line-bright: rgba(78, 205, 196, 0.35);
   --font-serif: 'Cormorant Garamond', serif;
   --font-mono: 'DM Mono', monospace;
-  --nav-height: 4.5rem;
+  --nav-height: calc(4.5rem - 5px);
   --section-pad: clamp(3rem, 6vw, 6rem);
   --content-max: 72rem;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);

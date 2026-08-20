@@ -145,7 +145,7 @@ export function renderDevPage(): string {
         <span class="hud-corner hud-corner--bl">POSTER</span>
         <span class="hud-corner hud-corner--br">V·JOSHI</span>
 
-        <div class="hero__intro reveal">
+        <div class="hero__intro">
           <h1 class="hero__welcome">
             Welcome to Vidhi's Software and Tech Documentation
           </h1>

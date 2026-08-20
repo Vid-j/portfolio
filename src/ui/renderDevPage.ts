@@ -154,7 +154,15 @@ export function renderDevPage(): string {
           <h1 class="hero__welcome">
             Welcome to Vidhi's Software and Tech Documentation
           </h1>
-          <a class="hero__resume" href="#" id="resume-link" aria-label="Download resume">
+          <a
+            class="hero__resume"
+            href="${escapeHtml(`${import.meta.env.BASE_URL}vidhi-joshi-resume.pdf`)}"
+            id="resume-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Vidhi-Joshi-Resume.pdf"
+            aria-label="Download resume"
+          >
             Resume
           </a>
         </div>

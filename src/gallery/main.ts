@@ -1,5 +1,4 @@
 import '../styles/gallery.css';
-import { createScene } from '../webgl/createScene';
 import { initBackToHome, initEnterTransition } from '../motion/routeTransitions';
 import { renderGallery } from './renderGallery';
 
@@ -13,15 +12,6 @@ if (!app) {
 app.innerHTML = renderGallery();
 initBackToHome('gallery');
 initEnterTransition('gallery');
-
-const canvas = document.getElementById('webgl-canvas') as HTMLCanvasElement | null;
-if (canvas) {
-  try {
-    createScene(canvas);
-  } catch (err) {
-    console.warn('WebGL background unavailable:', err);
-  }
-}
 
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 if (!reducedMotion) {

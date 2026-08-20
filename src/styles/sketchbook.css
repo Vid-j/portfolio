@@ -204,7 +204,7 @@ body {
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: rgba(0, 184, 255, 0.28);
+  color: #200524;
   pointer-events: none;
   user-select: none;
   transform: translateY(-15px);
@@ -212,8 +212,8 @@ body {
   padding-right: 0.08em;
   filter:
     blur(28px)
-    drop-shadow(0 0 40px rgba(0, 184, 255, 0.55))
-    drop-shadow(0 0 90px rgba(214, 0, 141, 0.35));
+    drop-shadow(0 0 40px rgba(32, 5, 36, 0.85))
+    drop-shadow(0 0 90px rgba(32, 5, 36, 0.55));
 }
 
 .hero__intro {

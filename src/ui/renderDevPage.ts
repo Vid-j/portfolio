@@ -44,16 +44,6 @@ export function renderDevPage(): string {
     )
     .join('');
 
-  const social = socialLinks
-    .map((l) => {
-      const external =
-        l.href.startsWith('http')
-          ? ' target="_blank" rel="noopener noreferrer"'
-          : '';
-      return `<a href="${escapeHtml(l.href)}"${external}>${escapeHtml(l.label)}</a>`;
-    })
-    .join('');
-
   const aboutPills = profile.aboutPills
     .map((p) => `<span class="pill">${escapeHtml(p)}</span>`)
     .join('');
@@ -150,19 +140,11 @@ export function renderDevPage(): string {
 
     <main id="main">
       <section class="hero" id="hero" aria-label="Introduction">
+        <h1 class="sr-only">${escapeHtml(profile.name)}</h1>
         <span class="hud-corner hud-corner--tl">SENS.STORY</span>
         <span class="hud-corner hud-corner--tr">DESIGN</span>
         <span class="hud-corner hud-corner--bl">POSTER</span>
         <span class="hud-corner hud-corner--br">V·JOSHI</span>
-
-        <div class="hero__panel reveal">
-          <p class="hero__tag">${escapeHtml(profile.tagline)}</p>
-          <h1 class="hero__name">
-            ${escapeHtml(profile.nameLines[0])}<br><em>${escapeHtml(profile.nameLines[1])}</em>
-          </h1>
-          <p class="hero__desc">${escapeHtml(profile.heroDesc)}</p>
-          <div class="hero__links">${social}</div>
-        </div>
 
         <div class="hero__scroll" aria-hidden="true">
           <p>Scroll</p>

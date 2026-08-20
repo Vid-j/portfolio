@@ -1,5 +1,52 @@
 @import './base.css';
 
+/* VRX-inspired Dev palette (scoped to this page only) */
+:root {
+  --charcoal: #080415;
+  --charcoal-light: #10082a;
+  --charcoal-mid: #160f36;
+  --off-white: #f4f7ff;
+  --muted: #9aa0c4;
+  --cyan: #00b8ff;
+  --pink: #d6008d;
+  --gold: #8b00ff;
+  --violet: #5b2cff;
+  --line: rgba(244, 247, 255, 0.12);
+  --line-bright: rgba(0, 184, 255, 0.4);
+  --glow-cyan: 0 0 18px rgba(0, 184, 255, 0.35);
+  --glow-magenta: 0 0 18px rgba(214, 0, 141, 0.35);
+}
+
+body {
+  background:
+    radial-gradient(ellipse 80% 55% at 18% 12%, rgba(139, 0, 255, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 88% 18%, rgba(214, 0, 141, 0.16), transparent 50%),
+    radial-gradient(ellipse 90% 60% at 50% 100%, rgba(0, 184, 255, 0.1), transparent 55%),
+    var(--charcoal);
+  color: var(--off-white);
+}
+
+::selection {
+  background: rgba(0, 184, 255, 0.35);
+  color: var(--off-white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  background: var(--cyan);
+  color: var(--charcoal);
+}
+
+.back-home:hover,
+.back-home:focus-visible {
+  color: var(--cyan);
+  text-shadow: 0 0 12px rgba(0, 184, 255, 0.45);
+}
+
 /* ── Nav ── */
 .nav {
   position: fixed;
@@ -12,7 +59,7 @@
   align-items: center;
   gap: 1rem;
   padding: 1.2rem clamp(1.25rem, 4vw, 3rem);
-  background: linear-gradient(to bottom, rgba(14, 14, 16, 0.92), transparent);
+  background: linear-gradient(to bottom, rgba(8, 4, 21, 0.92), transparent);
   -webkit-backdrop-filter: blur(6px);
   backdrop-filter: blur(6px);
 }
@@ -48,6 +95,7 @@
 .nav__links a:hover,
 .nav__links a:focus-visible {
   color: var(--cyan);
+  text-shadow: 0 0 12px rgba(0, 184, 255, 0.5);
 }
 
 /* ── HUD corners ── */
@@ -57,7 +105,7 @@
   font-size: 0.58rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(232, 228, 220, 0.35);
+  color: rgba(244, 247, 255, 0.35);
   pointer-events: none;
 }
 
@@ -121,9 +169,10 @@
   z-index: 2;
   padding: 2rem;
   border: 1px solid var(--line);
-  background: rgba(14, 14, 16, 0.55);
+  background: rgba(16, 8, 42, 0.55);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
+  box-shadow: 0 0 40px rgba(91, 44, 255, 0.12);
 }
 
 .hero__panel::before,
@@ -199,6 +248,7 @@
 .hero__links a:hover {
   color: var(--cyan);
   border-color: var(--cyan);
+  text-shadow: 0 0 12px rgba(0, 184, 255, 0.45);
 }
 
 .hero__meta {
@@ -212,7 +262,7 @@
 .hero__code {
   font-family: var(--font-mono);
   font-size: 0.58rem;
-  color: rgba(112, 81, 38, 0.55);
+  color: rgba(139, 0, 255, 0.55);
   text-align: right;
   line-height: 1.9;
 }
@@ -294,6 +344,7 @@
 .pill:hover {
   border-color: var(--cyan);
   color: var(--cyan);
+  box-shadow: var(--glow-cyan);
 }
 
 /* ── Education block ── */
@@ -301,7 +352,7 @@
   margin-top: 2rem;
   padding: 1.5rem;
   border: 1px solid var(--line);
-  background: rgba(22, 22, 26, 0.6);
+  background: rgba(16, 8, 42, 0.6);
 }
 
 .edu-block__marker {
@@ -344,12 +395,13 @@
   position: relative;
   padding: 1.75rem;
   border: 1px solid var(--line);
-  background: rgba(22, 22, 26, 0.5);
-  transition: border-color 0.3s, transform 0.3s var(--ease-out);
+  background: rgba(16, 8, 42, 0.5);
+  transition: border-color 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
 }
 
 .dossier-card:hover {
   border-color: var(--line-bright);
+  box-shadow: var(--glow-cyan);
 }
 
 .dossier-card.glitch-hover:hover {
@@ -373,7 +425,7 @@
 }
 
 .dossier-card:hover .dossier-card__frame {
-  border-color: rgba(78, 205, 196, 0.15);
+  border-color: rgba(0, 184, 255, 0.22);
 }
 
 .dossier-card__header {
@@ -391,12 +443,13 @@
   color: var(--cyan);
   padding: 0.2rem 0.5rem;
   border: 1px solid var(--line-bright);
+  box-shadow: 0 0 10px rgba(0, 184, 255, 0.15);
 }
 
 .hud-coords {
   font-family: var(--font-mono);
   font-size: 0.55rem;
-  color: rgba(232, 228, 220, 0.35);
+  color: rgba(244, 247, 255, 0.35);
   letter-spacing: 0.04em;
 }
 
@@ -481,6 +534,7 @@
 
 .exp-entry:hover::before {
   background: var(--pink);
+  box-shadow: var(--glow-magenta);
 }
 
 .exp-entry__marker {
@@ -538,8 +592,9 @@
 /* ── Skills dossier ── */
 .skills-panel {
   border: 1px solid var(--line);
-  background: rgba(22, 22, 26, 0.65);
+  background: rgba(16, 8, 42, 0.65);
   padding: 2rem;
+  box-shadow: 0 0 36px rgba(91, 44, 255, 0.1);
 }
 
 .skills-panel__meta {
@@ -585,7 +640,7 @@
 
 .skill-group li {
   font-size: 0.95rem;
-  color: rgba(232, 228, 220, 0.65);
+  color: rgba(244, 247, 255, 0.65);
   padding: 0.35rem 0;
   border-bottom: 1px solid var(--line);
 }
@@ -629,9 +684,9 @@
 .side-quest-card {
   padding: 1.25rem 1.5rem;
   border: 1px solid var(--line);
-  background: rgba(22, 22, 26, 0.45);
+  background: rgba(16, 8, 42, 0.45);
   transform: rotate(var(--rotate, 0deg));
-  transition: transform 0.3s var(--ease-out), border-color 0.3s;
+  transition: transform 0.3s var(--ease-out), border-color 0.3s, box-shadow 0.3s;
 }
 
 .side-quest-card:nth-child(1) { --rotate: -0.6deg; margin-left: 0; }
@@ -640,7 +695,8 @@
 
 .side-quest-card:hover {
   transform: rotate(0deg) translateY(-2px);
-  border-color: var(--line-bright);
+  border-color: rgba(214, 0, 141, 0.55);
+  box-shadow: var(--glow-magenta);
 }
 
 .side-quest-card__tag {
@@ -773,7 +829,7 @@ html.js-ready .reveal.is-visible {
     align-items: flex-end;
     gap: 0.75rem;
     padding: 1rem;
-    background: rgba(14, 14, 16, 0.95);
+    background: rgba(8, 4, 21, 0.95);
     border: 1px solid var(--line);
   }
 

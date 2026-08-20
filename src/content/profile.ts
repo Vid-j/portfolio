@@ -23,7 +23,7 @@ export const profile = {
   tagline: 'Designer · Developer · Researcher · Artist',
   heroDesc:
     'Computer Science meets Visual Arts. I build interfaces where logic becomes beauty, from conversational AI systems to embedded research tools.',
-  locations: 'Toronto · San Francisco · London, Ontario',
+  locations: 'Toronto · San Francisco · New York',
   aboutHeading: 'Where code meets craft',
   aboutParagraphs: [
     "I'm a builder bridging the technical and creative gap with logical systems and intentional design. My background as a Computer Science and Visual Arts double major has shaped an entrepreneurial mindset: I don't just write code; I design solutions that are scalable, efficient, and structurally sound.",
@@ -78,11 +78,3 @@ export const education: Education = {
     'HEAT member, Hindu Students Council (2025–26)',
   ],
 };
-
-export const heroCodeFragments = [
-  'renderSketch()',
-  'node.connect()',
-  'glsl.compile',
-  'subject.xray',
-  'archive.load',
-];

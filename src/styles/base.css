@@ -101,19 +101,24 @@ body::after {
 }
 
 .back-home {
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
-  color: var(--muted);
-  transition: color 0.25s var(--ease-out);
   flex-shrink: 0;
+  line-height: 0;
+  transition: opacity 0.25s var(--ease-out);
 }
 
 .back-home:hover,
 .back-home:focus-visible {
-  color: var(--cyan);
+  opacity: 0.85;
+}
+
+.back-home__logo {
+  width: 162px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,4 +1,4 @@
-import { education, heroCodeFragments, navLinks, profile, socialLinks } from '../content/profile';
+import { education, navLinks, profile, socialLinks } from '../content/profile';
 import { projects } from '../content/projects';
 import type { Project } from '../content/projects';
 import { experience } from '../content/experience';
@@ -37,7 +37,6 @@ function renderProjectCard(project: Project, index: number): string {
 }
 
 export function renderDevPage(): string {
-  const codeLines = heroCodeFragments.map((l) => escapeHtml(l)).join('<br>');
   const nav = navLinks
     .map(
       (l) =>
@@ -134,8 +133,15 @@ export function renderDevPage(): string {
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="nav" role="banner">
-      <a class="back-home" href="${escapeHtml(routes.hub)}">← Home</a>
-      <a class="nav__logo" href="#hero">V·J</a>
+      <a class="back-home" href="${escapeHtml(routes.hub)}" aria-label="Home — Vidhi Joshi">
+        <img
+          class="back-home__logo"
+          src="${escapeHtml(`${import.meta.env.BASE_URL}images/vidhi-joshi.png`)}"
+          alt="Vidhi Joshi"
+          width="162"
+          height="64"
+        />
+      </a>
       <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">Menu</button>
       <ul class="nav__links" id="nav-menu">
         ${nav}
@@ -158,11 +164,6 @@ export function renderDevPage(): string {
           <div class="hero__links">${social}</div>
         </div>
 
-        <div class="hero__meta">
-          <div class="hero__code" aria-hidden="true">${codeLines}</div>
-          <p class="hero__locations">${escapeHtml(profile.locations)}</p>
-        </div>
-
         <div class="hero__scroll" aria-hidden="true">
           <p>Scroll</p>
           <span></span>
@@ -170,20 +171,21 @@ export function renderDevPage(): string {
       </section>
 
       <section class="section about" id="about" aria-labelledby="about-heading">
-        <div class="about__intro reveal">
+        <div class="about__content reveal">
           ${sectionLabel('About')}
-          <h2 class="section-heading" id="about-heading">Where code<br>meets <em>craft</em></h2>
-        </div>
-        <div class="about__text reveal reveal-d1">
           ${profile.aboutParagraphs.map((p) => `<p>${escapeHtml(p)}</p>`).join('')}
           <div class="about__pills">${aboutPills}</div>
-          <div class="edu-block reveal reveal-d2">
+          <div class="edu-block reveal reveal-d1">
             <div class="edu-block__marker">EDU-01</div>
             <div class="edu-block__school">${escapeHtml(education.school)}</div>
             <div class="edu-block__degree">${escapeHtml(education.degree)}</div>
             <div class="edu-block__activities">${eduActivities}</div>
             <div class="edu-block__meta">${escapeHtml(education.period)} · ${escapeHtml(education.location)}</div>
           </div>
+        </div>
+        <div class="about__aside reveal reveal-d1">
+          <h2 class="about__heading" id="about-heading">Where code<br>meets <em>craft</em></h2>
+          <p class="about__locations">${escapeHtml(profile.locations)}</p>
         </div>
       </section>
 

@@ -43,8 +43,8 @@ body {
 
 .back-home:hover,
 .back-home:focus-visible {
-  color: var(--cyan);
-  text-shadow: 0 0 12px rgba(0, 184, 255, 0.45);
+  opacity: 0.85;
+  filter: drop-shadow(0 0 10px rgba(0, 184, 255, 0.35));
 }
 
 /* ── Nav ── */
@@ -55,7 +55,7 @@ body {
   right: 0;
   z-index: 100;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 1rem;
   padding: 1.2rem clamp(1.25rem, 4vw, 3rem);
@@ -64,22 +64,14 @@ body {
   backdrop-filter: blur(6px);
 }
 
-.nav__logo {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--off-white);
-  justify-self: center;
-}
-
 .nav__links {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: clamp(0.75rem, 2vw, 1.75rem);
   justify-content: flex-end;
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .nav__links a {
@@ -156,7 +148,7 @@ body {
 .hero {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
   padding: calc(var(--nav-height) + 2rem) clamp(1.25rem, 4vw, 3rem) 5.5rem;
   max-width: var(--content-max);
@@ -173,6 +165,7 @@ body {
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   box-shadow: 0 0 40px rgba(91, 44, 255, 0.12);
+  max-width: 36rem;
 }
 
 .hero__panel::before,
@@ -251,32 +244,6 @@ body {
   text-shadow: 0 0 12px rgba(0, 184, 255, 0.45);
 }
 
-.hero__meta {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 2rem;
-}
-
-.hero__code {
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  color: rgba(139, 0, 255, 0.55);
-  text-align: right;
-  line-height: 1.9;
-}
-
-.hero__locations {
-  font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-}
-
 .hero__scroll {
   position: absolute;
   bottom: 1.5rem;
@@ -311,12 +278,17 @@ body {
 /* ── About ── */
 .about {
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
   align-items: start;
+  position: relative;
 }
 
-.about__text p {
+.about__content .section-label {
+  margin-bottom: 1.75rem;
+}
+
+.about__content > p {
   font-size: 1.05rem;
   color: var(--muted);
   line-height: 1.85;
@@ -328,6 +300,39 @@ body {
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-top: 1.5rem;
+}
+
+.about__aside {
+  position: relative;
+  min-height: 100%;
+  padding-right: 2.5rem;
+}
+
+.about__heading {
+  font-size: clamp(2.8rem, 6.2vw, 4.6rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.about__heading em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.about__locations {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  white-space: nowrap;
 }
 
 .pill {
@@ -358,7 +363,7 @@ body {
 .edu-block__marker {
   font-family: var(--font-mono);
   font-size: 0.58rem;
-  color: var(--pink);
+  color: var(--cyan);
   letter-spacing: 0.12em;
   margin-bottom: 0.5rem;
 }
@@ -813,6 +818,9 @@ html.js-ready .reveal.is-visible {
   color: var(--off-white);
   padding: 0.4rem 0.75rem;
   cursor: pointer;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
 }
 
 @media (max-width: 900px) {
@@ -838,21 +846,23 @@ html.js-ready .reveal.is-visible {
   }
 
   .hero {
-    grid-template-columns: 1fr;
     min-height: auto;
     padding-top: calc(var(--nav-height) + 3rem);
   }
 
-  .hero__meta {
-    align-items: flex-start;
-  }
-
-  .hero__locations {
-    writing-mode: horizontal-tb;
-  }
-
   .about {
     grid-template-columns: 1fr;
+  }
+
+  .about__aside {
+    padding-right: 0;
+    order: -1;
+  }
+
+  .about__locations {
+    position: static;
+    writing-mode: horizontal-tb;
+    margin-top: 1.25rem;
   }
 
   .exp-entry {

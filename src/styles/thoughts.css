@@ -51,13 +51,9 @@ body::after {
   color: var(--thoughts-muted);
 }
 
-.back-home {
-  color: var(--thoughts-muted);
-}
-
 .back-home:hover,
 .back-home:focus-visible {
-  color: var(--thoughts-accent);
+  opacity: 0.85;
 }
 
 .thoughts-main {

@@ -25,7 +25,15 @@ export function renderGallery(): string {
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="gallery-nav" role="banner">
-      <a class="back-home" href="${escapeHtml(routes.hub)}">← Home</a>
+      <a class="back-home" href="${escapeHtml(routes.hub)}" aria-label="Home — Vidhi Joshi">
+        <img
+          class="back-home__logo"
+          src="${escapeHtml(`${import.meta.env.BASE_URL}images/vidhi-joshi.png`)}"
+          alt="Vidhi Joshi"
+          width="162"
+          height="64"
+        />
+      </a>
       <span class="gallery-nav__mark">GALLERY</span>
     </header>
 

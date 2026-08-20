@@ -6,7 +6,8 @@
   --charcoal-light: #10082a;
   --charcoal-mid: #160f36;
   --off-white: #f4f7ff;
-  --muted: #9aa0c4;
+  --muted: #b4b8d4;
+  --body: #e8ebf8;
   --cyan: #00b8ff;
   --pink: #d6008d;
   --gold: #8b00ff;
@@ -60,9 +61,10 @@ body {
   align-items: center;
   gap: 1rem;
   padding: 1.2rem clamp(1.25rem, 4vw, 3rem);
-  background: linear-gradient(to bottom, rgba(8, 4, 21, 0.92), transparent);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  background: rgba(8, 4, 21, 0.97);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
   pointer-events: none;
 }
 
@@ -91,6 +93,7 @@ body {
   text-decoration: none;
   color: var(--muted);
   transition: color 0.25s var(--ease-out);
+  position: relative;
 }
 
 .nav__links a:hover,
@@ -99,7 +102,22 @@ body {
   text-shadow: 0 0 12px rgba(0, 184, 255, 0.5);
 }
 
-/* ── HUD corners ── */
+.nav__links a.is-active {
+  color: var(--cyan);
+}
+
+.nav__links a.is-active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.35rem;
+  height: 1px;
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(0, 184, 255, 0.55);
+}
+
+/* ── HUD corners (hero-only; clipped so they never bleed under nav) ── */
 .hud-corner {
   position: absolute;
   font-family: var(--font-mono);
@@ -108,10 +126,11 @@ body {
   text-transform: uppercase;
   color: rgba(244, 247, 255, 0.35);
   pointer-events: none;
+  z-index: 1;
 }
 
-.hud-corner--tl { top: calc(var(--nav-height) + 1rem); left: clamp(1.25rem, 4vw, 3rem); }
-.hud-corner--tr { top: calc(var(--nav-height) + 1rem); right: clamp(1.25rem, 4vw, 3rem); }
+.hud-corner--tl { top: 1rem; left: clamp(1.25rem, 4vw, 3rem); }
+.hud-corner--tr { top: 1rem; right: clamp(1.25rem, 4vw, 3rem); }
 .hud-corner--bl { bottom: 2rem; left: clamp(1.25rem, 4vw, 3rem); }
 .hud-corner--br { bottom: 2rem; right: clamp(1.25rem, 4vw, 3rem); }
 
@@ -120,6 +139,9 @@ body {
   padding: var(--section-pad) clamp(1.25rem, 4vw, 3rem);
   max-width: var(--content-max);
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+  scroll-margin-top: calc(var(--nav-height) + 1rem);
 }
 
 .section-label {
@@ -146,6 +168,7 @@ body {
   font-weight: 300;
   line-height: 1.08;
   letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
 }
 
 .section-heading em {
@@ -164,6 +187,8 @@ body {
   margin: 0 auto;
   position: relative;
   text-align: center;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .hero__intro {
@@ -263,10 +288,11 @@ body {
 /* ── About ── */
 .about {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 4.5rem);
   align-items: start;
   position: relative;
+  width: 100%;
 }
 
 .about__content .section-label {
@@ -275,7 +301,7 @@ body {
 
 .about__content > p {
   font-size: 1.05rem;
-  color: var(--muted);
+  color: var(--body);
   line-height: 1.85;
   margin-bottom: 1.25rem;
 }
@@ -387,9 +413,11 @@ body {
   border: 1px solid var(--line);
   background: rgba(16, 8, 42, 0.5);
   transition: border-color 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+  outline: none;
 }
 
-.dossier-card:hover {
+.dossier-card:hover,
+.dossier-card:focus-within {
   border-color: var(--line-bright);
   box-shadow: var(--glow-cyan);
 }
@@ -436,13 +464,6 @@ body {
   box-shadow: 0 0 10px rgba(0, 184, 255, 0.15);
 }
 
-.hud-coords {
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  color: rgba(244, 247, 255, 0.35);
-  letter-spacing: 0.04em;
-}
-
 .dossier-card__title {
   font-size: 1.45rem;
   font-weight: 400;
@@ -458,7 +479,7 @@ body {
 
 .dossier-card__summary {
   font-size: 0.95rem;
-  color: var(--muted);
+  color: var(--body);
   line-height: 1.75;
   margin-bottom: 1.25rem;
 }
@@ -468,26 +489,26 @@ body {
   gap: 1rem;
 }
 
+.dossier-card__links:empty {
+  display: none;
+}
+
 .dossier-card__links a {
   font-family: var(--font-mono);
   font-size: 0.58rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--off-white);
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.dossier-card__links a.is-available {
-  opacity: 1;
-  pointer-events: auto;
-  border-bottom: 1px solid var(--line);
-}
-
-.dossier-card__links a.is-available:hover {
   color: var(--cyan);
-  border-color: var(--cyan);
+  border-bottom: 1px solid var(--line-bright);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.dossier-card__links a:hover,
+.dossier-card__links a:focus-visible {
+  color: var(--off-white);
+  border-color: var(--off-white);
 }
 
 /* ── Projects grid ── */
@@ -565,7 +586,7 @@ body {
 
 .exp-entry__bullets li {
   font-size: 0.95rem;
-  color: var(--muted);
+  color: var(--body);
   line-height: 1.75;
   padding: 0.25rem 0 0.25rem 1.1rem;
   position: relative;
@@ -630,7 +651,7 @@ body {
 
 .skill-group li {
   font-size: 0.95rem;
-  color: rgba(244, 247, 255, 0.65);
+  color: var(--body);
   padding: 0.35rem 0;
   border-bottom: 1px solid var(--line);
 }
@@ -644,7 +665,7 @@ body {
 
 .gallery-teaser__text {
   font-size: 0.95rem;
-  color: var(--muted);
+  color: var(--body);
   margin-bottom: 1rem;
   line-height: 1.55;
 }
@@ -703,7 +724,7 @@ body {
 
 .side-quest-card__summary {
   font-size: 0.88rem;
-  color: var(--muted);
+  color: var(--body);
   line-height: 1.65;
 }
 
@@ -734,30 +755,37 @@ body {
 
 .contact__link {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--muted);
+  color: var(--off-white);
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  transition: color 0.2s;
+  gap: 0.85rem;
+  padding-bottom: 0.15rem;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), text-shadow 0.2s;
 }
 
 .contact__link span {
-  width: 20px;
-  height: 1px;
+  width: 28px;
+  height: 2px;
   background: currentColor;
-  transition: width 0.3s;
+  transition: width 0.3s var(--ease-out);
+  box-shadow: 0 0 8px rgba(0, 184, 255, 0.25);
 }
 
-.contact__link:hover {
+.contact__link:hover,
+.contact__link:focus-visible {
   color: var(--cyan);
+  border-bottom-color: var(--cyan);
+  text-shadow: 0 0 12px rgba(0, 184, 255, 0.45);
 }
 
-.contact__link:hover span {
-  width: 40px;
+.contact__link:hover span,
+.contact__link:focus-visible span {
+  width: 48px;
 }
 
 .contact__copy {

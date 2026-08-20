@@ -13,7 +13,3 @@ export function sectionLabel(text: string): string {
 export function hudTag(text: string): string {
   return `<span class="hud-tag">${escapeHtml(text)}</span>`;
 }
-
-export function hudCoords(text: string): string {
-  return `<span class="hud-coords">${escapeHtml(text)}</span>`;
-}

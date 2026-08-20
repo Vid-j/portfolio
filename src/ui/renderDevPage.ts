@@ -5,16 +5,22 @@ import { experience } from '../content/experience';
 import { skills, subjectMeta } from '../content/skills';
 import { sideQuests } from '../content/sideQuests';
 import { routes } from '../routes';
-import { escapeHtml, hudCoords, hudTag, sectionLabel } from './helpers';
+import { escapeHtml, hudTag, sectionLabel } from './helpers';
 
 function renderProjectLinks(project: Project): string {
-  const demo = project.links.demo
-    ? `<a class="is-available" href="${escapeHtml(project.links.demo)}" target="_blank" rel="noopener noreferrer">Demo</a>`
-    : `<a>Demo — soon</a>`;
-  const repo = project.links.repo
-    ? `<a class="is-available" href="${escapeHtml(project.links.repo)}" target="_blank" rel="noopener noreferrer">Repo</a>`
-    : `<a>Repo — soon</a>`;
-  return `<div class="dossier-card__links">${demo}${repo}</div>`;
+  const parts: string[] = [];
+  if (project.links.demo) {
+    parts.push(
+      `<a href="${escapeHtml(project.links.demo)}" target="_blank" rel="noopener noreferrer">Demo</a>`,
+    );
+  }
+  if (project.links.repo) {
+    parts.push(
+      `<a href="${escapeHtml(project.links.repo)}" target="_blank" rel="noopener noreferrer">Repo</a>`,
+    );
+  }
+  if (parts.length === 0) return '';
+  return `<div class="dossier-card__links">${parts.join('')}</div>`;
 }
 
 function renderProjectCard(project: Project, index: number): string {
@@ -26,7 +32,6 @@ function renderProjectCard(project: Project, index: number): string {
       <div class="dossier-card__frame" aria-hidden="true"></div>
       <header class="dossier-card__header">
         ${hudTag(project.fileTag)}
-        ${hudCoords(project.coords)}
       </header>
       <h3 class="dossier-card__title">${escapeHtml(project.title)}</h3>
       <div class="dossier-card__tags">${tags}</div>
@@ -64,7 +69,7 @@ export function renderDevPage(): string {
         return `
         <article class="exp-entry reveal${delay}">
           <div class="exp-entry__meta">
-            <div class="exp-entry__marker">${escapeHtml(exp.marker)} · ${escapeHtml(exp.coords)}</div>
+            <div class="exp-entry__marker">${escapeHtml(exp.marker)}</div>
             <h3 class="exp-entry__title">${escapeHtml(exp.title)}</h3>
             <p class="exp-entry__company">${escapeHtml(exp.company)}</p>
             <p class="exp-entry__date">${escapeHtml(exp.date)}</p>
@@ -182,7 +187,7 @@ export function renderDevPage(): string {
       <section class="section" id="projects" aria-labelledby="projects-heading">
         ${sectionLabel('Projects')}
         <h2 class="section-heading reveal" id="projects-heading">Documented <em>builds</em></h2>
-        <div class="projects-grid" style="margin-top: 2.5rem">
+        <div class="projects-grid">
           ${projectCards}
         </div>
       </section>
@@ -190,13 +195,13 @@ export function renderDevPage(): string {
       <section class="section" id="experience" aria-labelledby="experience-heading">
         ${sectionLabel('Experience')}
         <h2 class="section-heading reveal" id="experience-heading">Work <em>log</em></h2>
-        <div class="exp-list" style="margin-top: 2rem">${expEntries}</div>
+        <div class="exp-list">${expEntries}</div>
       </section>
 
       <section class="section" id="skills" aria-labelledby="skills-heading">
         ${sectionLabel('Skills & Toolkit')}
         <h2 class="section-heading reveal" id="skills-heading">Subject <em>file</em></h2>
-        <div class="skills-panel reveal reveal-d1" style="margin-top: 2.5rem">
+        <div class="skills-panel reveal reveal-d1">
           <dl class="skills-panel__meta">
             <div><dt>ID</dt><dd>${escapeHtml(subjectMeta.id)}</dd></div>
             <div><dt>Function</dt><dd>${escapeHtml(subjectMeta.function)}</dd></div>
@@ -210,7 +215,7 @@ export function renderDevPage(): string {
       <section class="section" id="gallery-link" aria-labelledby="gallery-link-heading">
         ${sectionLabel('Art')}
         <h2 class="section-heading reveal" id="gallery-link-heading">Visual <em>archive</em></h2>
-        <div class="gallery-teaser reveal reveal-d1" style="margin-top: 2rem">
+        <div class="gallery-teaser reveal reveal-d1">
           <p class="gallery-teaser__text">Studio work and digital experiments live in the immersive gallery.</p>
           <a class="gallery-teaser__link" href="${escapeHtml(routes.gallery)}">View full gallery →</a>
         </div>
@@ -219,7 +224,7 @@ export function renderDevPage(): string {
       <section class="section" id="side-quests" aria-labelledby="side-quests-heading">
         ${sectionLabel('Side Quests')}
         <h2 class="section-heading reveal" id="side-quests-heading">Off-path <em>experiments</em></h2>
-        <div class="side-quests" style="margin-top: 2rem">${sideQuestCards}</div>
+        <div class="side-quests">${sideQuestCards}</div>
       </section>
 
       <footer class="section contact" id="contact" aria-labelledby="contact-heading">

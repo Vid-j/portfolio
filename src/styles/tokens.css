@@ -12,7 +12,7 @@
   --font-serif: 'Cormorant Garamond', serif;
   --font-mono: 'DM Mono', monospace;
   --nav-height: calc(4.5rem - 5px);
-  --section-pad: clamp(3rem, 6vw, 6rem);
-  --content-max: 72rem;
+  --section-pad: clamp(7.5rem, 12vw, 10rem);
+  --content-max: 78rem;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }

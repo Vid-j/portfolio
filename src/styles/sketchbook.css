@@ -204,16 +204,16 @@ body {
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.04em;
-  color: #200524;
+  color: #09162b;
   pointer-events: none;
   user-select: none;
-  transform: translateY(-15px);
+  transform: translateY(35px);
   /* Allura "VJ" reads heavy on the right; nudge left for optical center */
   padding-right: 0.08em;
   filter:
     blur(28px)
-    drop-shadow(0 0 40px rgba(32, 5, 36, 0.85))
-    drop-shadow(0 0 90px rgba(32, 5, 36, 0.55));
+    drop-shadow(0 0 40px rgba(9, 22, 43, 0.85))
+    drop-shadow(0 0 90px rgba(9, 22, 43, 0.55));
 }
 
 .hero__intro {

@@ -191,6 +191,32 @@ body {
   isolation: isolate;
 }
 
+.hero__vj {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 0;
+  width: 900px;
+  height: 900px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-cursive);
+  font-size: 900px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: rgba(0, 184, 255, 0.28);
+  pointer-events: none;
+  user-select: none;
+  transform: translate(-50%, calc(-50% - 15px));
+  filter:
+    blur(28px)
+    drop-shadow(0 0 40px rgba(0, 184, 255, 0.55))
+    drop-shadow(0 0 90px rgba(214, 0, 141, 0.35));
+}
+
 .hero__intro {
   position: relative;
   z-index: 2;

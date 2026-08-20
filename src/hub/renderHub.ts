@@ -39,20 +39,20 @@ export function renderHub(): string {
       <section class="hub__destinations" id="hub-destinations" aria-labelledby="hub-dest-heading">
         <h2 class="hub__dest-heading" id="hub-dest-heading">Choose a path</h2>
         <div class="hub__cards">
-          <a class="hub-card hub-card--gallery" href="${escapeHtml(routes.gallery)}" data-route="gallery">
-            <span class="hub-card__label">01 · Gallery</span>
-            <h3 class="hub-card__title">Virtual Art Gallery</h3>
-            <p class="hub-card__desc">Immersive studio work, digital experiments, and spatial archives.</p>
-            <span class="hub-card__preview hub-card__preview--gallery" aria-hidden="true"></span>
-          </a>
-
           <a class="hub-card hub-card--dev" href="${escapeHtml(routes.dev)}" data-route="dev">
-            <span class="hub-card__label">02 · Dev</span>
-            <h3 class="hub-card__title">Software Portfolio</h3>
+            <span class="hub-card__label">01 · Dev</span>
+            <h3 class="hub-card__title">Software and Tech Portfolio</h3>
             <p class="hub-card__desc">Projects, experience, and systems — terminal-grade documentation.</p>
             <span class="hub-card__preview hub-card__preview--dev" aria-hidden="true">
               <code>$ renderPortfolio()</code>
             </span>
+          </a>
+
+          <a class="hub-card hub-card--gallery" href="${escapeHtml(routes.gallery)}" data-route="gallery">
+            <span class="hub-card__label">02 · Gallery</span>
+            <h3 class="hub-card__title">Visual Designs</h3>
+            <p class="hub-card__desc">Immersive studio work, digital experiments, and spatial archives.</p>
+            <span class="hub-card__preview hub-card__preview--gallery" aria-hidden="true"></span>
           </a>
 
           <a class="hub-card hub-card--thoughts" href="${escapeHtml(routes.thoughts)}" data-route="thoughts">

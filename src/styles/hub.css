@@ -1,15 +1,27 @@
 @import './base.css';
 
+:root {
+  --font-display: 'Allura', cursive;
+}
+
 .hub {
-  min-height: 100dvh;
   max-width: 42rem;
   margin: 0 auto;
-  padding: clamp(3rem, 8vh, 5rem) clamp(1.25rem, 4vw, 2rem) 3rem;
+  padding: 0 clamp(1.25rem, 4vw, 2rem) 3rem;
   display: flex;
   flex-direction: column;
-  gap: clamp(2.5rem, 6vh, 4rem);
   position: relative;
   z-index: 1;
+}
+
+.hub__intro {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(2rem, 5vh, 3rem);
+  padding: clamp(2.5rem, 7vh, 4rem) 0;
+  box-sizing: border-box;
 }
 
 .hub__header {
@@ -22,15 +34,17 @@
   letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .hub__title {
-  font-size: clamp(2.5rem, 7vw, 3.75rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 16vw, 7.5rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+  color: var(--off-white);
 }
 
 .hub__tagline {
@@ -39,6 +53,11 @@
   letter-spacing: 0.12em;
   color: var(--muted);
   text-transform: uppercase;
+}
+
+.hub__destinations {
+  padding-top: clamp(3rem, 8vh, 5rem);
+  scroll-margin-top: 1.5rem;
 }
 
 .hub__subscribe {
@@ -168,6 +187,7 @@
   color: var(--muted);
   text-align: center;
   margin-bottom: 1.5rem;
+  padding-top: clamp(1rem, 3vh, 2rem);
 }
 
 .hub__cards {
@@ -266,7 +286,23 @@
 
 .hub__footer {
   text-align: center;
-  margin-top: auto;
+  margin-top: clamp(3rem, 8vh, 5rem);
+}
+
+@media (max-height: 720px) {
+  .hub__intro {
+    justify-content: flex-start;
+    padding-top: clamp(1.5rem, 4vh, 2.5rem);
+    gap: clamp(1.25rem, 3vh, 2rem);
+  }
+
+  .hub__title {
+    font-size: clamp(3.5rem, 14vw, 5.5rem);
+  }
+
+  .hub__subscribe {
+    padding: 1.5rem;
+  }
 }
 
 .hub__privacy {

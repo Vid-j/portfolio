@@ -6,35 +6,35 @@ export function renderHub(): string {
   return `
     <canvas id="hub-bloom-canvas" aria-hidden="true"></canvas>
     <div class="hub">
-      <header class="hub__header">
-        <p class="hub__eyebrow">Welcome</p>
-        <h1 class="hub__title">
-          ${escapeHtml(profile.nameLines[0])} ${escapeHtml(profile.nameLines[1])}
-        </h1>
-        <p class="hub__tagline">${escapeHtml(profile.tagline)}</p>
-      </header>
+      <div class="hub__intro">
+        <header class="hub__header">
+          <p class="hub__eyebrow">Welcome</p>
+          <h1 class="hub__title">${escapeHtml(profile.name)}</h1>
+          <p class="hub__tagline">${escapeHtml(profile.tagline)}</p>
+        </header>
 
-      <section class="hub__subscribe" aria-labelledby="hub-subscribe-heading">
-        <h2 class="hub__subscribe-heading" id="hub-subscribe-heading">Stay connected</h2>
-        <p class="hub__subscribe-desc">Leave your email to stay connected.</p>
-        <form class="hub__form" id="hub-email-form" data-state="idle" novalidate>
-          <label class="hub__form-label" for="hub-email">Email address</label>
-          <div class="hub__form-row">
-            <input
-              class="hub__form-input"
-              type="email"
-              id="hub-email"
-              name="email"
-              autocomplete="email"
-              placeholder="you@example.com"
-              required
-            />
-            <button class="hub__form-submit" type="submit">Connect</button>
-          </div>
-          <p class="hub__form-status" data-form-status hidden role="status" aria-live="polite"></p>
-        </form>
-        <a class="hub__skip" href="#hub-destinations">Continue without sharing email</a>
-      </section>
+        <section class="hub__subscribe" aria-labelledby="hub-subscribe-heading">
+          <h2 class="hub__subscribe-heading" id="hub-subscribe-heading">Stay connected</h2>
+          <p class="hub__subscribe-desc">Leave your email to stay connected.</p>
+          <form class="hub__form" id="hub-email-form" data-state="idle" novalidate>
+            <label class="hub__form-label" for="hub-email">Email address</label>
+            <div class="hub__form-row">
+              <input
+                class="hub__form-input"
+                type="email"
+                id="hub-email"
+                name="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+                required
+              />
+              <button class="hub__form-submit" type="submit">Connect</button>
+            </div>
+            <p class="hub__form-status" data-form-status hidden role="status" aria-live="polite"></p>
+          </form>
+          <a class="hub__skip" href="#hub-destinations">Continue without sharing email</a>
+        </section>
+      </div>
 
       <section class="hub__destinations" id="hub-destinations" aria-labelledby="hub-dest-heading">
         <h2 class="hub__dest-heading" id="hub-dest-heading">Choose a path</h2>

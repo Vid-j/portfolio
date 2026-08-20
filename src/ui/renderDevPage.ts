@@ -140,11 +140,19 @@ export function renderDevPage(): string {
 
     <main id="main">
       <section class="hero" id="hero" aria-label="Introduction">
-        <h1 class="sr-only">${escapeHtml(profile.name)}</h1>
         <span class="hud-corner hud-corner--tl">SENS.STORY</span>
         <span class="hud-corner hud-corner--tr">DESIGN</span>
         <span class="hud-corner hud-corner--bl">POSTER</span>
         <span class="hud-corner hud-corner--br">V·JOSHI</span>
+
+        <div class="hero__intro reveal">
+          <h1 class="hero__welcome">
+            Welcome to Vidhi's Software and Tech Documentation
+          </h1>
+          <a class="hero__resume" href="#" id="resume-link" aria-label="Download resume">
+            Resume
+          </a>
+        </div>
 
         <div class="hero__scroll" aria-hidden="true">
           <p>Scroll</p>

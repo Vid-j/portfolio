@@ -41,18 +41,6 @@ body {
   color: var(--charcoal);
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 .back-home:hover,
 .back-home:focus-visible {
   opacity: 0.85;
@@ -161,10 +149,54 @@ body {
   min-height: 100vh;
   display: grid;
   align-items: center;
+  justify-items: center;
   padding: calc(var(--nav-height) + 2rem) clamp(1.25rem, 4vw, 3rem) 5.5rem;
   max-width: var(--content-max);
   margin: 0 auto;
   position: relative;
+  text-align: center;
+}
+
+.hero__intro {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 38rem;
+}
+
+.hero__welcome {
+  font-size: clamp(1.85rem, 4.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--off-white);
+  margin: 0;
+}
+
+.hero__resume {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--off-white);
+  background: transparent;
+  border: 1px solid var(--line-bright);
+  transition: color 0.2s var(--ease-out), border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+
+.hero__resume:hover,
+.hero__resume:focus-visible {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: var(--glow-cyan);
 }
 
 .hero__scroll {

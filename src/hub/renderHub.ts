@@ -2,6 +2,8 @@ import { profile } from '../content/profile';
 import { routes } from '../routes';
 import { escapeHtml } from '../ui/helpers';
 
+const nameLogoUrl = `${import.meta.env.BASE_URL}images/vidhi-joshi.png`;
+
 export function renderHub(): string {
   return `
     <canvas id="hub-bloom-canvas" aria-hidden="true"></canvas>
@@ -9,7 +11,16 @@ export function renderHub(): string {
       <div class="hub__intro">
         <header class="hub__header">
           <p class="hub__eyebrow">Welcome</p>
-          <h1 class="hub__title">${escapeHtml(profile.name)}</h1>
+          <h1 class="hub__title">
+            <img
+              class="hub__title-logo"
+              src="${escapeHtml(nameLogoUrl)}"
+              alt="${escapeHtml(profile.name)}"
+              width="640"
+              height="160"
+              decoding="async"
+            />
+          </h1>
           <p class="hub__tagline">${escapeHtml(profile.tagline)}</p>
         </header>
 

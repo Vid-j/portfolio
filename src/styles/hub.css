@@ -1,9 +1,5 @@
 @import './base.css';
 
-:root {
-  --font-display: 'Allura', cursive;
-}
-
 .hub {
   max-width: 42rem;
   margin: 0 auto;
@@ -38,13 +34,14 @@
 }
 
 .hub__title {
-  font-family: var(--font-display);
-  font-size: clamp(4.5rem, 16vw, 7.5rem);
-  font-weight: 400;
-  line-height: 0.95;
-  letter-spacing: 0.02em;
-  margin-bottom: 1rem;
-  color: var(--off-white);
+  margin: 0 0 1rem;
+}
+
+.hub__title-logo {
+  display: block;
+  width: min(100%, 26rem);
+  height: auto;
+  margin: 0 auto;
 }
 
 .hub__tagline {
@@ -296,8 +293,8 @@
     gap: clamp(1.25rem, 3vh, 2rem);
   }
 
-  .hub__title {
-    font-size: clamp(3.5rem, 14vw, 5.5rem);
+  .hub__title-logo {
+    width: min(100%, 20rem);
   }
 
   .hub__subscribe {

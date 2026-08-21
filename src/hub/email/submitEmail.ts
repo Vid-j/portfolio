@@ -3,18 +3,14 @@ export interface SubmitEmailResult {
   error?: string;
 }
 
+function subscribeEndpoint(): string {
+  const base = import.meta.env.BASE_URL || '/';
+  return new URL('api/subscribe', `http://local${base.endsWith('/') ? base : `${base}/`}`).pathname;
+}
+
 export async function submitEmail(email: string): Promise<SubmitEmailResult> {
-  const formId = import.meta.env.VITE_FORMSPREE_ID;
-
-  if (!formId) {
-    return {
-      ok: false,
-      error: 'Email signup is not configured yet. Add VITE_FORMSPREE_ID to your .env file.',
-    };
-  }
-
   try {
-    const response = await fetch(`https://formspree.io/f/${formId}`, {
+    const response = await fetch(subscribeEndpoint(), {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -25,7 +21,7 @@ export async function submitEmail(email: string): Promise<SubmitEmailResult> {
 
     const data = (await response.json()) as { ok?: boolean; error?: string };
 
-    if (response.ok) {
+    if (response.ok && data.ok !== false) {
       return { ok: true };
     }
 

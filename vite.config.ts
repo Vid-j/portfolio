@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
+import { subscribeApiPlugin } from './vite-plugins/subscribeApi';
 
 // GitHub Pages project sites live at /portfolio/; Vercel serves from domain root.
 // Override anytime with VITE_BASE_PATH (e.g. VITE_BASE_PATH=/portfolio/ npm run build)
@@ -7,6 +8,7 @@ const base = process.env.VITE_BASE_PATH ?? (process.env.VERCEL ? '/' : '/portfol
 
 export default defineConfig({
   base,
+  plugins: [subscribeApiPlugin()],
   build: {
     rollupOptions: {
       input: {

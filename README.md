@@ -10,7 +10,7 @@ Live site: https://vid-j.github.io/portfolio/
 - **Raw WebGL particle morph** — ambient background on dev and gallery routes
 - **GSAP + ScrollTrigger** — scroll-driven reveals on the dev portfolio
 - **Lenis** — smooth scroll (disabled when `prefers-reduced-motion` is on)
-- **Formspree** — email capture on the landing hub (optional, via env var)
+- **CSV email capture** — landing hub form appends `date,email` to `data/subscribers.csv`
 
 ## Routes
 
@@ -62,11 +62,18 @@ portfolio/
 
 ## Email capture setup
 
-1. Create a form at [formspree.io](https://formspree.io)
-2. Copy `.env.example` to `.env`
-3. Set `VITE_FORMSPREE_ID` to your form ID (the segment after `/f/` in the form URL)
+The landing hub **Connect** form posts to `/api/subscribe`, which appends a row to `data/subscribers.csv`:
 
-Without a Formspree ID, the form shows a friendly configuration error on submit. Subscribed emails are remembered in `localStorage`.
+```csv
+date,email
+"2026-08-21T04:22:00.000Z","you@example.com"
+```
+
+- **Local (`npm run dev`)** — Vite middleware writes to `data/subscribers.csv` (gitignored).
+- **Vercel** — serverless function at `api/subscribe.js` handles the same endpoint.
+- **GitHub Pages** — static hosting has no API; use Vercel (or run locally) to collect emails.
+
+Subscribed state is also remembered in `localStorage` so the form stays in the success state after submit.
 
 ## Editing content
 
